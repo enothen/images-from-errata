@@ -20,7 +20,7 @@ args = parser.parse_args()
 response = requests.get(pyxis_url + "/repositories?page_size=200&page=0&sort_by=repository&filter=namespace%3D%3D" + args.namespace)
 image_list = response.json()['data']
 
-print("Searching for images with tag ", args.tag)
+print("Searching for images with tag", args.tag)
 for x in image_list:
     if args.imagename and args.namespace+"/"+args.imagename != x['repository']:
         continue
