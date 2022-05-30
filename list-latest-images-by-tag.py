@@ -14,13 +14,18 @@ parser.add_argument('--architecture', required=False, default='amd64',
 parser.add_argument('--imagename', required=False, default=False, help='List only images matching exactly imagename')
 parser.add_argument('--namespace', required=True,
     help='Namespace to use when searching for image names, such as rhosp-rhel8 (rhosp16), rhosp13, openshift3 or openshift4')
+parser.add_argument('--parseable', action='store_true', required=False, default=False, help="Whether to print parseable output")
 args = parser.parse_args()
 
 # Get list of images
 response = requests.get(pyxis_url + "/repositories?page_size=200&page=0&sort_by=repository&filter=namespace%3D%3D" + args.namespace)
 image_list = response.json()['data']
 
-print("Searching for images with tag", args.tag)
+if args.parseable:
+    print("ImageName,Tag,Digest")
+else:
+    print("Searching for images with tag", args.tag)
+
 for x in image_list:
     if args.imagename and args.namespace+"/"+args.imagename != x['repository']:
         continue
@@ -36,4 +41,7 @@ for x in image_list:
                 max_tag = ''
                 for tag in repo['tags']:
                     max_tag = str(max(max_tag, tag['name']))
-                print(repo['registry']+"/"+repo['repository']+":"+max_tag)
+                if args.parseable:
+                    print(repo['registry']+"/"+repo['repository']+","+max_tag + "," + repo['manifest_schema2_digest'])
+                else:
+                    print(repo['registry']+"/"+repo['repository']+":"+max_tag + " " + repo['manifest_schema2_digest'])
