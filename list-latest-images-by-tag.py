@@ -7,7 +7,7 @@ import requests
 pyxis_url="https://catalog.redhat.com/api/containers/v1"
 
 # Get arguments from command line
-parser = argparse.ArgumentParser(description='Get the latest list of images that are part of a z-stream')
+parser = argparse.ArgumentParser(description='Helper script to get the list of latest images that are part of a z-stream')
 parser.add_argument('--tag', required=True, help="z-stream to search for")
 parser.add_argument('--architecture', required=False, default='amd64',
     help='Only list images matching a specific architecture, such as amd64 (default) ppc64le, or otherwise "all"')

@@ -7,7 +7,7 @@ import requests
 pyxis_url="https://catalog.redhat.com/api/containers/v1"
 
 # Get arguments from command line
-parser = argparse.ArgumentParser(description='Get images that were released as part of an Errata')
+parser = argparse.ArgumentParser(description='Helper script to list the images that were released as part of a container image errata')
 parser.add_argument('--architecture', required=False, default='amd64',
     help='Only list images matching a specific architecture, such as amd64 (default) ppc64le, or otherwise "all"')
 parser.add_argument('--imagename', required=False, default=False, help='List only images matching exactly imagename')
