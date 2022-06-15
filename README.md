@@ -44,3 +44,23 @@ registry.access.redhat.com/openshift4/ose-elasticsearch-operator@sha256:c67e45ef
 registry.access.redhat.com/openshift4/ose-elasticsearch-operator@sha256:70e2107e6bd92bafaa03c438640245be63808bd7bb1db670c9af70fe30ef608f (ppc64le)
 registry.access.redhat.com/openshift4/ose-elasticsearch-operator@sha256:ed8acd5a10f669da72a98eddac6a4905b554fecd132b9f17e5212a9933dd5dd9 (amd64)
 ~~~
+
+Searching for an image name:
+~~~
+$ ./search-container-image-catalog.py --namespace rhosp-rhel8\$ --repository nova-compute
+registry.access.redhat.com/rhosp-rhel8/openstack-nova-compute
+registry.access.redhat.com/rhosp-rhel8/openstack-nova-compute-ironic
+~~~
+
+Searching for an image by proivder and image name:
+~~~
+$ ./search-container-image-catalog.py --provider ibm --repository prometheus
+registry.connect.redhat.com/ibm-edge/prometheus-scheduler
+non_registry/ibm/prometheus
+non_registry/ibm/prometheus-ppc64le
+quay.io/opencloudio/ibm-monitoring-prometheusext-operator
+quay.io/opencloudio/prometheus
+quay.io/opencloudio/prometheus-config-reloader
+quay.io/opencloudio/prometheus-controller
+quay.io/opencloudio/prometheus-exporter
+~~~
